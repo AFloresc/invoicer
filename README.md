@@ -2,6 +2,8 @@
 
 A fully-featured, production-ready full-stack billing dashboard designed around the **Professional Polish** styling handbook. This engine operates purely serverless via fast local browser persistence (`localStorage`) and supports professional offline PDF print renders.
 
+All components have been carefully refactored into modular sub-100-line microcomponents, dramatically raising codebase maintainability and type separation.
+
 ---
 
 ## 🎨 Design Theme & Core Visual Identity
@@ -13,12 +15,67 @@ This system follows the **Professional Polish** guidelines:
 
 ---
 
+## 📂 Modular File & Project Structure
+
+The codebase is engineered with strict modular isolation. No individual component exceeds 150 lines:
+
+```text
+src/
+├── main.jsx                 # Main entry point booting React
+├── App.jsx                  # Main wrapper coordinating states and routing
+├── theme.js                 # Shared createTheme (MUI) configuration for themes
+├── utils.js                 # Shared mathematical, parsing and localStorage persistence helpers
+└── components/
+    ├── SidebarMenu.jsx               # Left-anchored corporate brand navigation rail
+    ├── AppToolbar.jsx                # Fixed application topbar with dark mode toggle
+    ├── KPICard.jsx                   # Individual elegant KPI metric visualizer
+    ├── PipelineProgressCard.jsx      # Progress bar card tracking estimate conversion goals
+    ├── KPICards.jsx                  # Grid displaying aggregated KPI metrics
+    ├── RevenueAllocationChart.jsx    # Custom SVG donut-chart plotting company revenue allocations
+    ├── TransactionStatusCounters.jsx # Graphic linear bars representing volume distribution
+    ├── RecentTransactionsTable.jsx   # Generic clickable transactions spreadsheet
+    ├── Dashboard.jsx                 # Financial analytics dashboard combining charts & tables
+    ├── CustomerStats.jsx             # Active entities and corporate metrics widgets
+    ├── CustomerTable.jsx             # CRM table detailing corporate directory entities
+    ├── CustomerDialog.jsx            # Create and edit popups for client profiles
+    ├── CustomersManager.jsx          # Database manager for customer relationships
+    ├── OverdueAlert.jsx              # Outstanding accounts warning banner
+    ├── InvoiceFilters.jsx            # Multi-state segment selector for invoice logs
+    ├── InvoicesTable.jsx             # Spreadsheet table tracking general invoice billing ledgers
+    ├── InvoiceManager.jsx            # Invoices overview section
+    ├── EstimateFilters.jsx           # Quote search filters panel
+    ├── EstimatesTable.jsx            # Ledger table tracking quotation books
+    ├── EstimateManager.jsx           # Estimates and quotation books section
+    ├── ActionPanel.jsx               # Print and close preview controls bar
+    ├── LetterheadHeader.jsx          # Branding header with auto-populating logo
+    ├── BilledPartySection.jsx        # Client billing addresses box
+    ├── TermsNotesSection.jsx         # Disclaimer and warranty footnotes
+    ├── DocPreview.jsx                # A4 print-mimic deliverable preview sheet
+    ├── LogoSection.jsx               # Base64 brand image drag selector
+    ├── DocumentReferenceSection.jsx  # IDs and issue/due dates calendar picker
+    ├── ClientDetailsSection.jsx      # Client organizer with CRM autofill dropdown
+    ├── LineItemsTableSection.jsx     # Tabular product/service invoice item draft builder
+    ├── TaxDiscountSummarySection.jsx # Subtotal, discounts, and compound interest calculators
+    └── DocumentForm.jsx             # Comprehensive form builder compiling invoice/estimate drafts
+```
+
+---
+
+## ⚙️ Core Refactoring Strategy
+
+The architecture was systematically modularized to enforce strict separation of concerns:
+1. **Dumb Display vs. Stateful Containers**: Layout wrappers handle only state manipulation, whereas small subcomponents are purely declarative.
+2. **Eliminated Nested Definitions**: All nested subcomponents were extracted into distinct, reusable filenames under `/src/components/`, ensuring single-responsibility structures.
+3. **Optimized Dependency Arrays**: Handlers are memorized cleanly or defined externally to prevent React infinite re-renders.
+
+---
+
 ## 🚀 Key Architectural Modules
 
 ### 1. Unified Dashboard & Performance KPIs
 * **Real-time Pipeline Tracking**: Stacks accepted vs. rejected quotes to project revenue conversion streams.
 * **Analytical KPI Badges**: Aggregates Outstanding Receivables, Overdue collection amounts, Accepted conversion pipeline totals, and overall settlement volumes.
-* **Dynamic D3/SVG Visualisations**: Features custom SVG allocation visualizers tracking revenue distributions across multiple client targets.
+* **Dynamic SVG Visualisations**: Features custom SVG allocation visualizers tracking revenue distributions across multiple client targets.
 
 ### 2. Invoices Log & Financial Records
 * **Collections Management**: Mark bills as `paid`, `pending` or `overdue`.
@@ -29,7 +86,7 @@ This system follows the **Professional Polish** guidelines:
 * **Custom Quotations**: Quickly draft and structure proposals with clean margin calculations.
 * **Approval States**: Track quote processes through interactive `accepted`, `rejected`, or `pending` status indicators.
 
-### 4. Client Profile Directory & Autofill integration (New)
+### 4. Client Profile Directory & Autofill Integration
 * **Enterprise Directory**: Add, update, and persist corporate customer contact details.
 * **Dynamic Billing Autofill**: Easily select pre-configured profiles in the Document Form to instantly populate client contacts.
 
