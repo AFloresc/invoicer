@@ -1,0 +1,6 @@
+{
+  "name": "Estimates and Invoices Manager",
+  "description": "A comprehensive dashboard to generate, manage, preview, and print professional estimates and invoices with dynamic KPIs, logo support, status tracking, and offline persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
