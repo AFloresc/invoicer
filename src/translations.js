@@ -1,0 +1,53 @@
+export const TRANSLATIONS = {
+  en: {
+    invoice: 'INVOICE',
+    estimate: 'ESTIMATE',
+    billTo: 'Bill To',
+    issueDate: 'Issue Date',
+    dueDate: 'Due Date',
+    description: 'Description',
+    qty: 'Qty',
+    unitPrice: 'Unit Price',
+    lineTotal: 'Line Total',
+    subtotal: 'Subtotal',
+    discount: 'Discount',
+    grandTotal: 'Grand Total',
+    notesAndDetails: 'Notes & Details',
+    termsAndConditions: 'Terms & Conditions',
+    thankYou: 'Thank you for your business. For billing queries, please contact {contact}.'
+  },
+  es: {
+    invoice: 'FACTURA',
+    estimate: 'PRESUPUESTO',
+    billTo: 'Facturar a',
+    issueDate: 'Fecha de emisión',
+    dueDate: 'Fecha de vencimiento',
+    description: 'Descripción',
+    qty: 'Cant.',
+    unitPrice: 'Precio unitario',
+    lineTotal: 'Total línea',
+    subtotal: 'Subtotal',
+    discount: 'Descuento',
+    grandTotal: 'Total general',
+    notesAndDetails: 'Notas y detalles',
+    termsAndConditions: 'Términos y condiciones',
+    thankYou: 'Gracias por su confianza. Para consultas de facturación, contacte con {contact}.'
+  },
+  ca: {
+    invoice: 'FACTURA',
+    estimate: 'PRESSUPOST',
+    billTo: 'Facturar a',
+    issueDate: 'Data d\'emissió',
+    dueDate: 'Data de venciment',
+    description: 'Descripció',
+    qty: 'Quant.',
+    unitPrice: 'Preu unitari',
+    lineTotal: 'Total línia',
+    subtotal: 'Subtotal',
+    discount: 'Descompte',
+    grandTotal: 'Total final',
+    notesAndDetails: 'Notes i detalls',
+    termsAndConditions: 'Termes i condicions',
+    thankYou: 'Gràcies per la seva confiança. Per a consultes de facturació, contacti amb {contact}.'
+  }
+};

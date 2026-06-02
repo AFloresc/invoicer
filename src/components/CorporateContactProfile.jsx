@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Grid, TextField, MenuItem, Divider, Button } from '@mui/material';
+import { Box, Typography, Grid, TextField, MenuItem, Divider, Button, Paper } from '@mui/material';
 import { Business, Save } from '@mui/icons-material';
 
 export function CorporateContactProfile({ 
@@ -8,6 +8,9 @@ export function CorporateContactProfile({
   address, setAddress, 
   phone, setPhone, 
   currency, setCurrency, 
+  currencyPosition, setCurrencyPosition,
+  taxLabel, setTaxLabel,
+  language, setLanguage,
   onSubmit 
 }) {
   return (
@@ -93,6 +96,49 @@ export function CorporateContactProfile({
             <MenuItem value="C$">Canadian Dollar (C$)</MenuItem>
           </TextField>
         </Grid>
+
+        <Grid item size={{ xs: 12, sm: 6 }}>
+          <TextField
+            select
+            label="Currency Symbol Position"
+            variant="outlined"
+            fullWidth
+            value={currencyPosition || 'before'}
+            onChange={(e) => setCurrencyPosition(e.target.value)}
+            sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
+          >
+            <MenuItem value="before">Before Amount (e.g. $100.00)</MenuItem>
+            <MenuItem value="after">After Amount (e.g. 100.00 $)</MenuItem>
+          </TextField>
+        </Grid>
+
+        <Grid item size={{ xs: 12, sm: 6 }}>
+          <TextField
+            label="Default Tax Label / Term"
+            variant="outlined"
+            fullWidth
+            placeholder="e.g. Tax, IVA, VAT"
+            value={taxLabel || 'Tax'}
+            onChange={(e) => setTaxLabel(e.target.value)}
+            sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
+          />
+        </Grid>
+
+        <Grid item size={{ xs: 12, sm: 6 }}>
+          <TextField
+            select
+            label="Default Document Language"
+            variant="outlined"
+            fullWidth
+            value={language || 'en'}
+            onChange={(e) => setLanguage(e.target.value)}
+            sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
+          >
+            <MenuItem value="en">English (default)</MenuItem>
+            <MenuItem value="es">Español (Spanish)</MenuItem>
+            <MenuItem value="ca">Català (Catalan)</MenuItem>
+          </TextField>
+        </Grid>
       </Grid>
 
       <Divider sx={{ my: 3 }} />
@@ -110,5 +156,3 @@ export function CorporateContactProfile({
     </Paper>
   );
 }
-
-import { Paper } from '@mui/material';

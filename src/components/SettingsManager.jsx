@@ -11,6 +11,9 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [currency, setCurrency] = useState('$');
+  const [currencyPosition, setCurrencyPosition] = useState('before');
+  const [taxLabel, setTaxLabel] = useState('Tax');
+  const [language, setLanguage] = useState('en');
   const [logoUrl, setLogoUrl] = useState('');
   const [savedSuccess, setSavedSuccess] = useState(false);
 
@@ -20,6 +23,9 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
     setAddress(settings.address || '');
     setPhone(settings.phone || '');
     setCurrency(settings.currency || '$');
+    setCurrencyPosition(settings.currencyPosition || 'before');
+    setTaxLabel(settings.taxLabel || 'Tax');
+    setLanguage(settings.language || 'en');
     setLogoUrl(settings.logoUrl || '');
   }, [settings]);
 
@@ -35,7 +41,17 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSaveSettings({ name, email, address, phone, logoUrl: logoUrl || undefined, currency });
+    onSaveSettings({ 
+      name, 
+      email, 
+      address, 
+      phone, 
+      logoUrl: logoUrl || undefined, 
+      currency,
+      currencyPosition,
+      taxLabel,
+      language,
+    });
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 3000);
   };
@@ -65,6 +81,9 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
             address={address} setAddress={setAddress}
             phone={phone} setPhone={setPhone}
             currency={currency} setCurrency={setCurrency}
+            currencyPosition={currencyPosition} setCurrencyPosition={setCurrencyPosition}
+            taxLabel={taxLabel} setTaxLabel={setTaxLabel}
+            language={language} setLanguage={setLanguage}
             onSubmit={handleSubmit}
           />
         </Grid>

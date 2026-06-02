@@ -13,11 +13,27 @@ export function calculateTotal(items, taxRate, discount) {
   return Number(total.toFixed(2));
 }
 
-export function formatCurrency(amount, symbol = '$') {
-  return `${symbol}${(parseFloat(amount) || 0).toLocaleString('en-US', {
+export function formatCurrency(amount, symbol = '$', position = null) {
+  let pos = position;
+  if (!pos) {
+    try {
+      const stored = localStorage.getItem('inv_mgmt_settings');
+      if (stored) {
+        const s = JSON.parse(stored);
+        pos = s.currencyPosition;
+      }
+    } catch (e) {
+      // fallback
+    }
+  }
+  if (!pos) pos = 'before';
+
+  const formatted = (parseFloat(amount) || 0).toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })}`;
+  });
+
+  return pos === 'after' ? `${formatted} ${symbol}` : `${symbol}${formatted}`;
 }
 
 // Check if an invoice in local state has passed its due date and should be marked overdue

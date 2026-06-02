@@ -5,10 +5,14 @@ import { ActionPanel } from './ActionPanel.jsx';
 import { LetterheadHeader } from './LetterheadHeader.jsx';
 import { BilledPartySection } from './BilledPartySection.jsx';
 import { TermsNotesSection } from './TermsNotesSection.jsx';
+import { TRANSLATIONS } from '../translations.js';
 
 export function DocPreview({ type, document: doc, settings, onClose }) {
   const isInvoice = type === 'invoice';
   const invoice = isInvoice ? doc : undefined;
+
+  const langKey = settings.language || 'en';
+  const t = TRANSLATIONS[langKey] || TRANSLATIONS['en'];
 
   const subtotal = calculateSubtotal(doc.items);
   const discountAmount = subtotal * ((doc.discount || 0) / 100);
@@ -70,15 +74,15 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
 
           <Grid item size={{ xs: 12, md: 5 }} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: { xs: 'flex-start', md: 'flex-end' } }}>
             <Typography variant="h3" sx={{ fontWeight: 800, fontFamily: 'var(--font-display)', letterSpacing: '-1px', color: '#111827', mb: 1 }}>
-              {isInvoice ? 'INVOICE' : 'ESTIMATE'}
+              {isInvoice ? t.invoice : t.estimate}
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: 700, fontFamily: 'var(--font-mono)', color: 'primary.main', mb: 1.5, fontSize: '1.1rem' }}>
               {doc.id}
             </Typography>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'auto auto', gap: '6px 16px', fontSize: '0.85rem', color: '#4b5563', justifyContent: 'end' }}>
-              <span className="font-medium text-gray-400">Issue Date:</span>
+              <span className="font-medium text-gray-400">{t.issueDate}:</span>
               <span className="text-right text-gray-800 font-medium">{doc.date}</span>
-              <span className="font-medium text-gray-400">Due Date:</span>
+              <span className="font-medium text-gray-400">{t.dueDate}:</span>
               <span className="text-right text-gray-800 font-medium">{doc.dueDate}</span>
             </Box>
           </Grid>
@@ -86,17 +90,17 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
 
         <Divider sx={{ my: 4, borderColor: '#e5e7eb' }} />
 
-        <BilledPartySection doc={doc} />
+        <BilledPartySection doc={doc} t={t} />
 
         <TableContainer component={Box} sx={{ mb: 4 }}>
           <Table aria-label="billing items" sx={{ '& .MuiTableCell-root': { py: 1.5, px: 1, borderColor: '#e5e7eb' } }}>
             <TableHead>
               <TableRow sx={{ bgcolor: '#f9fafb' }}>
                 <TableCell sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem', width: '60px' }}>#</TableCell>
-                <TableCell sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem' }}>Description</TableCell>
-                <TableCell align="center" sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem', width: '80px' }}>Qty</TableCell>
-                <TableCell align="right" sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem', width: '120px' }}>Unit Price</TableCell>
-                <TableCell align="right" sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem', width: '130px' }}>Line Total</TableCell>
+                <TableCell sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem' }}>{t.description}</TableCell>
+                <TableCell align="center" sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem', width: '80px' }}>{t.qty}</TableCell>
+                <TableCell align="right" sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem', width: '120px' }}>{t.unitPrice}</TableCell>
+                <TableCell align="right" sx={{ color: '#374151', fontWeight: 700, fontSize: '0.775rem', width: '130px' }}>{t.lineTotal}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -106,10 +110,10 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
                   <TableCell sx={{ color: '#1f2937', fontWeight: 500, fontSize: '0.85rem', whiteSpace: 'pre-line' }}>{item.description}</TableCell>
                   <TableCell align="center" sx={{ color: '#1f2937', fontSize: '0.85rem' }}>{item.quantity}</TableCell>
                   <TableCell align="right" sx={{ color: '#1f2937', fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>
-                    {formatCurrency(item.unitPrice, settings.currency)}
+                    {formatCurrency(item.unitPrice, settings.currency, settings.currencyPosition)}
                   </TableCell>
                   <TableCell align="right" sx={{ color: '#111827', fontWeight: 600, fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>
-                    {formatCurrency(item.quantity * item.unitPrice, settings.currency)}
+                    {formatCurrency(item.quantity * item.unitPrice, settings.currency, settings.currencyPosition)}
                   </TableCell>
                 </TableRow>
               ))}
@@ -118,24 +122,30 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
         </TableContainer>
 
         <Grid container spacing={3} sx={{ mt: 1 }}>
-          <TermsNotesSection notes={doc.notes} terms={doc.terms} email={settings.email} fallbackName={settings.name} />
+          <TermsNotesSection notes={doc.notes} terms={doc.terms} email={settings.email} fallbackName={settings.name} t={t} />
 
           <Grid item size={{ xs: 12, sm: 6 }} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, justifyContent: 'flex-start' }}>
             <Box sx={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 1, fontSize: '0.875rem' }}>
-              <span className="text-gray-500 font-medium">Subtotal</span>
-              <span className="text-right text-gray-800 font-medium font-mono">{formatCurrency(subtotal, settings.currency)}</span>
+              <span className="text-gray-500 font-medium">{t.subtotal}</span>
+              <span className="text-right text-gray-800 font-medium font-mono">
+                {formatCurrency(subtotal, settings.currency, settings.currencyPosition)}
+              </span>
 
               {doc.discount > 0 && (
                 <>
-                  <span className="text-gray-500 font-medium">Discount ({doc.discount}%)</span>
-                  <span className="text-right text-emerald-600 font-medium font-mono">-{formatCurrency(discountAmount, settings.currency)}</span>
+                  <span className="text-gray-500 font-medium">{t.discount} ({doc.discount}%)</span>
+                  <span className="text-right text-emerald-600 font-medium font-mono">
+                    -{formatCurrency(discountAmount, settings.currency, settings.currencyPosition)}
+                  </span>
                 </>
               )}
 
               {doc.taxRate > 0 && (
                 <>
-                  <span className="text-gray-500 font-medium">Tax ({doc.taxRate}%)</span>
-                  <span className="text-right text-gray-800 font-medium font-mono">+{formatCurrency(taxAmount, settings.currency)}</span>
+                  <span className="text-gray-500 font-medium">{doc.taxLabel || settings.taxLabel || 'Tax'} ({doc.taxRate}%)</span>
+                  <span className="text-right text-gray-800 font-medium font-mono">
+                    +{formatCurrency(taxAmount, settings.currency, settings.currencyPosition)}
+                  </span>
                 </>
               )}
             </Box>
@@ -144,10 +154,10 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
 
             <Box sx={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 1, alignItems: 'center' }}>
               <Typography sx={{ fontWeight: 800, color: '#111827', fontSize: '1rem', fontFamily: 'var(--font-display)' }}>
-                Grand Total ({settings.currency})
+                {t.grandTotal} ({settings.currency})
               </Typography>
               <Typography sx={{ fontWeight: 800, color: 'primary.main', fontSize: '1.25rem', fontFamily: 'var(--font-mono)' }}>
-                {formatCurrency(total, settings.currency)}
+                {formatCurrency(total, settings.currency, settings.currencyPosition)}
               </Typography>
             </Box>
           </Grid>
@@ -155,7 +165,7 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
 
         <Box sx={{ mt: 8, textAlign: 'center', borderTop: '1px dashed #e5e7eb', pt: 3 }} className="print-footer">
           <Typography variant="body2" sx={{ color: '#9ca3af', fontStyle: 'italic', fontSize: '0.775rem' }}>
-            Thank you for your business. For billing queries, please contact {settings.email || settings.name}.
+            {t.thankYou.replace('{contact}', settings.email || settings.name)}
           </Typography>
         </Box>
       </Paper>

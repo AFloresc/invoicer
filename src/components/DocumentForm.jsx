@@ -32,6 +32,7 @@ export function DocumentForm({
   const [notes, setNotes] = useState('');
   const [terms, setTerms] = useState('');
   const [taxRate, setTaxRate] = useState(0);
+  const [taxLabel, setTaxLabel] = useState('');
   const [discount, setDiscount] = useState(0);
   const [logoUrl, setLogoUrl] = useState('');
   const [items, setItems] = useState([{ id: '1', description: '', quantity: 1, unitPrice: 0 }]);
@@ -47,12 +48,14 @@ export function DocumentForm({
       setNotes(initialData.notes || '');
       setTerms(initialData.terms || '');
       setTaxRate(initialData.taxRate || 0);
+      setTaxLabel(initialData.taxLabel || '');
       setDiscount(initialData.discount || 0);
       setLogoUrl(initialData.logoUrl || '');
       if (initialData.items && initialData.items.length > 0) setItems(initialData.items);
     } else {
       const existing = isInvoice ? loadInvoices() : loadEstimates();
       setDocId(generateNextId(isInvoice ? 'INV' : 'EST', existing));
+      setTaxLabel(settings.taxLabel || 'Tax');
       if (settings.logoUrl) setLogoUrl(settings.logoUrl);
     }
   }, [initialData, type, settings]);
@@ -97,6 +100,7 @@ export function DocumentForm({
       notes,
       terms,
       taxRate: taxRate || 0,
+      taxLabel: taxLabel || undefined,
       discount: discount || 0,
       logoUrl: logoUrl || undefined,
       status: initialData ? initialData.status : 'pending',
@@ -129,7 +133,16 @@ export function DocumentForm({
             onUpdateItem={handleUpdateItem} 
           />
 
-          <TaxDiscountSummarySection subtotal={subtotal} discount={discount} onDiscountChange={setDiscount} taxRate={taxRate} onTaxRateChange={setTaxRate} settings={settings} />
+          <TaxDiscountSummarySection 
+            subtotal={subtotal} 
+            discount={discount} 
+            onDiscountChange={setDiscount} 
+            taxRate={taxRate} 
+            onTaxRateChange={setTaxRate} 
+            taxLabel={taxLabel}
+            onTaxLabelChange={setTaxLabel}
+            settings={settings} 
+          />
 
           <Grid container spacing={3} sx={{ mt: 0.5 }}>
             <Grid item size={12}>

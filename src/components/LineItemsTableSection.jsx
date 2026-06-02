@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardContent, Box, Typography, Button, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TextField, IconButton } from '@mui/material';
 import { Add, Delete } from '@mui/icons-material';
+import { formatCurrency } from '../utils.js';
 
 export function LineItemsTableSection({ items, currency, onAddItem, onRemoveItem, onUpdateItem }) {
   return (
@@ -69,7 +70,7 @@ export function LineItemsTableSection({ items, currency, onAddItem, onRemoveItem
                     />
                   </TableCell>
                   <TableCell align="right" sx={{ fontWeight: 600, fontFamily: 'var(--font-mono)', pr: 1, fontSize: '0.875rem' }}>
-                    {currency}{((parseFloat(item.quantity) || 0) * (parseFloat(item.unitPrice) || 0)).toFixed(2)}
+                    {formatCurrency((parseFloat(item.quantity) || 0) * (parseFloat(item.unitPrice) || 0), currency)}
                   </TableCell>
                   <TableCell align="center">
                     <IconButton 

@@ -24,6 +24,7 @@ src/
 ├── main.jsx                 # Main entry point booting React
 ├── App.jsx                  # Main wrapper coordinating states and routing
 ├── theme.js                 # Shared createTheme (MUI) configuration for themes
+├── translations.js          # Translation dictionaries for multilanguage support
 ├── utils.js                 # Shared mathematical, parsing and localStorage persistence helpers
 └── components/
     ├── SidebarMenu.jsx               # Left-anchored corporate brand navigation rail
@@ -93,6 +94,13 @@ The architecture was systematically modularized to enforce strict separation of 
 ### 5. Settings & Brand Customizer
 * **Corporate Letterheads**: Custom profile metadata details save as the default header on all reports.
 * **Brand Logo Uploads**: Select custom base64 logos that populate automatically on estimates and invoices.
+* **Multilanguage Configuration**: Change the default output language for invoices and estimates dynamically (English, Spanish, or Catalan).
+
+### 6. 🌍 Multilanguage Deliverables Support
+The application provides full support for localized deliverables. Users can switch their default language in the settings, which seamlessly translates all invoice and estimate client-facing content:
+* **English (Default)**: Standard international terminology.
+* **Español (Spanish)**: Localized terminology including fields like *FACTURA*, *PRESUPUESTO*, *Fecha de vencimiento*, and customizable tax labels.
+* **Català (Catalan)**: Fully localized Catalan translation addressing specific regional requirements (*FACTURA*, *PRESSUPOST*, *Data d'emissió*, *Data de venciment*, etc.).
 
 ---
 
