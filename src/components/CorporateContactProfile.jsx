@@ -28,7 +28,7 @@ export function CorporateContactProfile({
       </Box>
 
       <Grid container spacing={2.5}>
-        <Grid item size={12}>
+        <Grid size={12}>
           <TextField
             label="Registered Company Name"
             required
@@ -40,7 +40,7 @@ export function CorporateContactProfile({
           />
         </Grid>
 
-        <Grid item size={{ xs: 12, sm: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             label="Official Email Address"
             type="email"
@@ -53,7 +53,7 @@ export function CorporateContactProfile({
           />
         </Grid>
 
-        <Grid item size={{ xs: 12, sm: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             label="Phone Number"
             variant="outlined"
@@ -64,7 +64,7 @@ export function CorporateContactProfile({
           />
         </Grid>
 
-        <Grid item size={12}>
+        <Grid size={12}>
           <TextField
             label="HQ Physical Address"
             multiline
@@ -77,7 +77,7 @@ export function CorporateContactProfile({
           />
         </Grid>
 
-        <Grid item size={{ xs: 12, sm: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             select
             label="Default Billing Currency"
@@ -97,7 +97,7 @@ export function CorporateContactProfile({
           </TextField>
         </Grid>
 
-        <Grid item size={{ xs: 12, sm: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             select
             label="Currency Symbol Position"
@@ -112,7 +112,7 @@ export function CorporateContactProfile({
           </TextField>
         </Grid>
 
-        <Grid item size={{ xs: 12, sm: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             label="Default Tax Label / Term"
             variant="outlined"
@@ -124,7 +124,7 @@ export function CorporateContactProfile({
           />
         </Grid>
 
-        <Grid item size={{ xs: 12, sm: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TextField
             select
             label="Default Document Language"

@@ -53,7 +53,7 @@ export function CustomerDialog({ open, onClose, selectedCust, onSave }) {
       </DialogTitle>
       <DialogContent dividers sx={{ py: 2.5 }}>
         <Grid container spacing={2.5}>
-          <Grid item size={{ xs: 12 }}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               required
               label="Full Client Name"
@@ -63,7 +63,7 @@ export function CustomerDialog({ open, onClose, selectedCust, onSave }) {
               placeholder="e.g. John Doe"
             />
           </Grid>
-          <Grid item size={{ xs: 12 }}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               label="Company Name"
               fullWidth
@@ -72,7 +72,7 @@ export function CustomerDialog({ open, onClose, selectedCust, onSave }) {
               placeholder="e.g. Acme Corporation"
             />
           </Grid>
-          <Grid item size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Client Email Address"
               type="email"
@@ -82,7 +82,7 @@ export function CustomerDialog({ open, onClose, selectedCust, onSave }) {
               placeholder="e.g. billing@acme.com"
             />
           </Grid>
-          <Grid item size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Client Phone Number"
               fullWidth
@@ -91,7 +91,7 @@ export function CustomerDialog({ open, onClose, selectedCust, onSave }) {
               placeholder="e.g. +1 (555) 123-4567"
             />
           </Grid>
-          <Grid item size={{ xs: 12 }}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               label="Billing Address"
               multiline
@@ -102,7 +102,7 @@ export function CustomerDialog({ open, onClose, selectedCust, onSave }) {
               placeholder="e.g. 100 Industrial Parkway, Chicago, IL 60611"
             />
           </Grid>
-          <Grid item size={{ xs: 12 }}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               label="Relationship Notes"
               multiline

@@ -4,7 +4,7 @@ import { Grid, Card, CardContent, Typography } from '@mui/material';
 export function CustomerStats({ customersCount, corporateCount }) {
   return (
     <Grid container spacing={3} sx={{ mb: 4 }}>
-      <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <Card elevation={0} sx={{ border: '1px solid', borderColor: 'divider', borderLeft: '4px solid #2563eb' }}>
           <CardContent sx={{ p: 2.5, '&:last-child': { pb: 2.5 } }}>
             <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em' }}>
@@ -16,7 +16,7 @@ export function CustomerStats({ customersCount, corporateCount }) {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <Card elevation={0} sx={{ border: '1px solid', borderColor: 'divider', borderLeft: '4px solid #10b981' }}>
           <CardContent sx={{ p: 2.5, '&:last-child': { pb: 2.5 } }}>
             <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em' }}>
@@ -28,7 +28,7 @@ export function CustomerStats({ customersCount, corporateCount }) {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <Card elevation={0} sx={{ border: '1px solid', borderColor: 'divider', borderLeft: '4px solid #f59e0b' }}>
           <CardContent sx={{ p: 2.5, '&:last-child': { pb: 2.5 } }}>
             <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.03em' }}>

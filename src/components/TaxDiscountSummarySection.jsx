@@ -18,7 +18,7 @@ export function TaxDiscountSummarySection({
 
   return (
     <Grid container spacing={3}>
-      <Grid item size={{ xs: 12, sm: 6 }}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <Card variant="outlined" sx={{ borderRadius: '12px', height: '100%' }}>
           <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2.5 }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 700, fontFamily: 'var(--font-display)' }}>
@@ -42,7 +42,7 @@ export function TaxDiscountSummarySection({
             />
 
             <Grid container spacing={2}>
-              <Grid item size={6}>
+              <Grid size={6}>
                 <TextField
                   label={`${activeTaxLabel} Rate`}
                   type="number"
@@ -59,7 +59,7 @@ export function TaxDiscountSummarySection({
                   sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
                 />
               </Grid>
-              <Grid item size={6}>
+              <Grid size={6}>
                 <TextField
                   label={`${activeTaxLabel} Term / Label`}
                   variant="outlined"
@@ -75,7 +75,7 @@ export function TaxDiscountSummarySection({
         </Card>
       </Grid>
 
-      <Grid item size={{ xs: 12, sm: 6 }}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <Card variant="outlined" sx={{ borderRadius: '12px', height: '100%', bgcolor: 'action.hover' }}>
           <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Typography variant="subtitle2" sx={{ fontWeight: 700, fontFamily: 'var(--font-display)' }}>

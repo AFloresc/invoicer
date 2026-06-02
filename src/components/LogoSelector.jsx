@@ -34,6 +34,7 @@ export function LogoSelector({ logoUrl, onLogoUpload, onClearLogo }) {
         ) : (
           <Box 
             sx={{ 
+              display: 'block',
               border: '1px dashed', 
               borderColor: 'divider', 
               borderRadius: '8px', 

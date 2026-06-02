@@ -72,7 +72,7 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
         <Grid container spacing={3} sx={{ mb: 5, pt: 2 }}>
           <LetterheadHeader finalLogo={finalLogo} settings={settings} />
 
-          <Grid item size={{ xs: 12, md: 5 }} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: { xs: 'flex-start', md: 'flex-end' } }}>
+          <Grid size={{ xs: 12, md: 5 }} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: { xs: 'flex-start', md: 'flex-end' } }}>
             <Typography variant="h3" sx={{ fontWeight: 800, fontFamily: 'var(--font-display)', letterSpacing: '-1px', color: '#111827', mb: 1 }}>
               {isInvoice ? t.invoice : t.estimate}
             </Typography>
@@ -124,7 +124,7 @@ export function DocPreview({ type, document: doc, settings, onClose }) {
         <Grid container spacing={3} sx={{ mt: 1 }}>
           <TermsNotesSection notes={doc.notes} terms={doc.terms} email={settings.email} fallbackName={settings.name} t={t} />
 
-          <Grid item size={{ xs: 12, sm: 6 }} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, justifyContent: 'flex-start' }}>
+          <Grid size={{ xs: 12, sm: 6 }} sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, justifyContent: 'flex-start' }}>
             <Box sx={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 1, fontSize: '0.875rem' }}>
               <span className="text-gray-500 font-medium">{t.subtotal}</span>
               <span className="text-right text-gray-800 font-medium font-mono">

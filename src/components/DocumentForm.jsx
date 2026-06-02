@@ -111,18 +111,18 @@ export function DocumentForm({
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ py: 2 }}>
       <Grid container spacing={3}>
-        <Grid item size={{ xs: 12, md: 4 }}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Grid container spacing={3}>
-            <Grid item size={12}>
+            <Grid size={12}>
               <LogoSection isInvoice={isInvoice} logoUrl={logoUrl} onLogoUpload={handleLogoUpload} onClearLogo={() => setLogoUrl('')} />
             </Grid>
-            <Grid item size={12}>
+            <Grid size={12}>
               <DocumentReferenceSection initialData={initialData} docId={docId} onDocIdChange={setDocId} date={date} onDateChange={setDate} dueDate={dueDate} onDueDateChange={setDueDate} />
             </Grid>
           </Grid>
         </Grid>
 
-        <Grid item size={{ xs: 12, md: 8 }}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <ClientDetailsSection customers={customers} clientName={clientName} onClientNameChange={setClientName} clientEmail={clientEmail} onClientEmailChange={setClientEmail} clientAddress={clientAddress} onClientAddressChange={setClientAddress} />
 
           <LineItemsTableSection 
@@ -145,7 +145,7 @@ export function DocumentForm({
           />
 
           <Grid container spacing={3} sx={{ mt: 0.5 }}>
-            <Grid item size={12}>
+            <Grid size={12}>
               <Card variant="outlined" sx={{ borderRadius: '12px' }}>
                 <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                   <Typography variant="subtitle2" sx={{ fontWeight: 700, fontFamily: 'var(--font-display)' }}>Disclaimers & Notes</Typography>
@@ -157,7 +157,7 @@ export function DocumentForm({
           </Grid>
         </Grid>
 
-        <Grid item size={12}>
+        <Grid size={12}>
           <Paper elevation={0} sx={{ p: 2, display: 'flex', justifyContent: 'flex-end', gap: 2, border: '1px solid', borderColor: 'divider', borderRadius: '12px' }}>
             <Button variant="outlined" onClick={onCancel} color="inherit" sx={{ textTransform: 'none', borderRadius: '8px', px: 3 }}>Cancel</Button>
             <Button type="submit" variant="contained" color="primary" sx={{ textTransform: 'none', borderRadius: '8px', px: 4 }}>Save {isInvoice ? 'Invoice' : 'Estimate'}</Button>

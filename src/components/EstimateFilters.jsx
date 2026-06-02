@@ -6,7 +6,7 @@ export function EstimateFilters({ search, onSearchChange, statusFilter, onStatus
   return (
     <Paper elevation={0} sx={{ p: 2.5, mb: 3, border: '1px solid', borderColor: 'divider', borderRadius: '12px' }}>
       <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-        <Grid item size={{ xs: 12, sm: 6, md: 8 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 8 }}>
           <TextField
             size="small"
             placeholder="Search estimate ID, client name, email..."
@@ -25,7 +25,7 @@ export function EstimateFilters({ search, onSearchChange, statusFilter, onStatus
             sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
           />
         </Grid>
-        <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
           <Box sx={{ display: 'flex', gap: 1 }}>
             {['all', 'pending', 'accepted', 'rejected'].map((filter) => (
               <Button

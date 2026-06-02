@@ -74,7 +74,7 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
       )}
 
       <Grid container spacing={3}>
-        <Grid item size={{ xs: 12, md: 8 }}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <CorporateContactProfile 
             name={name} setName={setName}
             email={email} setEmail={setEmail}
@@ -88,16 +88,16 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
           />
         </Grid>
 
-        <Grid item size={{ xs: 12, md: 4 }}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Grid container spacing={3}>
-            <Grid item size={12}>
+            <Grid size={12}>
               <LogoSelector 
                 logoUrl={logoUrl}
                 onLogoUpload={handleLogoUpload}
                 onClearLogo={() => setLogoUrl('')}
               />
             </Grid>
-            <Grid item size={12}>
+            <Grid size={12}>
               <SystemDiagnosticsCard 
                 onFactoryReset={() => {
                   if (window.confirm('Are you absolutely sure you want to restore the database? This will revert all bills, proposals, and customers to initial templates and clear custom entries!')) {

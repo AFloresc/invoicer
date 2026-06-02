@@ -6,7 +6,7 @@ export function TermsNotesSection({ notes, terms, email, fallbackName, t }) {
   const termsLabel = t?.termsAndConditions || 'Terms & Conditions';
 
   return (
-    <Grid item size={{ xs: 12, sm: 6 }}>
+    <Grid size={{ xs: 12, sm: 6 }}>
       {notes && (
         <Box sx={{ mb: 3 }}>
           <Typography variant="caption" sx={{ color: '#9ca3af', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.7rem', display: 'block', mb: 1, fontFamily: 'var(--font-display)' }}>

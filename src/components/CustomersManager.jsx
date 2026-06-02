@@ -163,7 +163,7 @@ export function CustomersManager({ customers, invoices = [], settings = {}, onSa
 
         <Grid container spacing={3}>
           {/* Customer Metadata Card */}
-          <Grid item size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Paper elevation={0} sx={{ p: 3, border: '1px solid', borderColor: 'divider', borderRadius: '12px', height: '100%', display: 'flex', flexDirection: 'column', gap: 2.5 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
                 <Avatar sx={{ width: 56, height: 56, bgcolor: 'primary.main', fontSize: '1.25rem', fontWeight: 800 }}>
@@ -236,11 +236,11 @@ export function CustomersManager({ customers, invoices = [], settings = {}, onSa
           </Grid>
 
           {/* Customer Summaries Section */}
-          <Grid item size={{ xs: 12, md: 8 }}>
+          <Grid size={{ xs: 12, md: 8 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
               {/* Stats row */}
               <Grid container spacing={2}>
-                <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                   <Card variant="outlined" sx={{ borderRadius: '12px' }}>
                     <CardContent sx={{ p: 2 }}>
                       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
@@ -257,7 +257,7 @@ export function CustomersManager({ customers, invoices = [], settings = {}, onSa
                   </Card>
                 </Grid>
 
-                <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                   <Card variant="outlined" sx={{ borderRadius: '12px', borderLeft: '4px solid', borderLeftColor: 'success.main' }}>
                     <CardContent sx={{ p: 2 }}>
                       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
@@ -274,7 +274,7 @@ export function CustomersManager({ customers, invoices = [], settings = {}, onSa
                   </Card>
                 </Grid>
 
-                <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                   <Card variant="outlined" sx={{ borderRadius: '12px', borderLeft: '4px solid', borderLeftColor: 'warning.main' }}>
                     <CardContent sx={{ p: 2 }}>
                       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
@@ -291,7 +291,7 @@ export function CustomersManager({ customers, invoices = [], settings = {}, onSa
                   </Card>
                 </Grid>
 
-                <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                   <Card variant="outlined" sx={{ borderRadius: '12px', borderLeft: '4px solid', borderLeftColor: 'error.main' }}>
                     <CardContent sx={{ p: 2 }}>
                       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>

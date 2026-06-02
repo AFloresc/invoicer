@@ -145,8 +145,8 @@ export function Dashboard({
           borderRadius: '12px' 
         }}
       >
-        <Grid container spacing={2} alignItems="center">
-          <Grid item size={{ xs: 12, md: filterType === 'custom' ? 4 : 4 }}>
+        <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+          <Grid size={{ xs: 12, md: filterType === 'custom' ? 4 : 4 }}>
             <TextField
               select
               size="small"
@@ -178,7 +178,7 @@ export function Dashboard({
           
           {filterType === 'custom' && (
             <>
-              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                 <TextField
                   type="date"
                   label="From Date"
@@ -191,7 +191,7 @@ export function Dashboard({
                   sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
                 />
               </Grid>
-              <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+              <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                 <TextField
                   type="date"
                   label="To Date"
@@ -214,7 +214,7 @@ export function Dashboard({
 
       {/* Visual Charts Row - uses filtered data */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item size={{ xs: 12, md: 7 }}>
+        <Grid size={{ xs: 12, md: 7 }}>
           <RevenueAllocationChart 
             paid={invoiceAmounts.paid}
             pending={invoiceAmounts.pending}
@@ -223,7 +223,7 @@ export function Dashboard({
             currency={currency}
           />
         </Grid>
-        <Grid item size={{ xs: 12, md: 5 }}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <TransactionStatusCounters 
             paid={invoiceStatuses.paid}
             pending={invoiceStatuses.pending}
@@ -235,7 +235,7 @@ export function Dashboard({
 
       {/* Activity Tables Row - matches filtered list values */}
       <Grid container spacing={3}>
-        <Grid item size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <RecentTransactionsTable 
             title="Recent Invoices"
             icon={<Receipt color="primary" />}
@@ -247,7 +247,7 @@ export function Dashboard({
             isInvoice={true}
           />
         </Grid>
-        <Grid item size={{ xs: 12, md: 6 }}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <RecentTransactionsTable 
             title="Recent Estimates"
             icon={<RequestQuote color="primary" />}

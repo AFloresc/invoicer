@@ -62,7 +62,7 @@ export function ClientDetailsSection({
         </Box>
         
         <Grid container spacing={2.5}>
-          <Grid item size={12}>
+          <Grid size={12}>
             <TextField
               label="Client Name / Organization"
               variant="outlined"
@@ -74,7 +74,7 @@ export function ClientDetailsSection({
               sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
             />
           </Grid>
-          <Grid item size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Client Email Address"
               type="email"
@@ -86,7 +86,7 @@ export function ClientDetailsSection({
               sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px' } }}
             />
           </Grid>
-          <Grid item size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ xs: 12, sm: 6 }}>
             <TextField
               label="Client Billing Address"
               variant="outlined"

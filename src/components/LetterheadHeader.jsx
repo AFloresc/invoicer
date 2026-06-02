@@ -4,7 +4,7 @@ import { Home, Email, Phone } from '@mui/icons-material';
 
 export function LetterheadHeader({ finalLogo, settings }) {
   return (
-    <Grid item size={{ xs: 12, md: 7 }}>
+    <Grid size={{ xs: 12, md: 7 }}>
       {finalLogo ? (
         <Box sx={{ mb: 2, maxHeight: '80px', display: 'flex', alignItems: 'center' }}>
           <img 
