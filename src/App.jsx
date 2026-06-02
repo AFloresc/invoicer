@@ -159,7 +159,18 @@ export default function App() {
               {activeTab === 'dashboard' && <Dashboard invoices={invoices} estimates={estimates} settings={settings} onNavigate={(id) => { setActiveTab(id); setActiveForm(null); }} onViewInvoice={(inv) => setActivePreview({ type: 'invoice', doc: inv })} onViewEstimate={(est) => setActivePreview({ type: 'estimate', doc: est })} />}
               {activeTab === 'invoices' && <InvoiceManager invoices={invoices} settings={settings} onAddInvoice={() => setActiveForm({ type: 'invoice', mode: 'add' })} onEditInvoice={(inv) => setActiveForm({ type: 'invoice', mode: 'edit', data: inv })} onDeleteInvoice={(id) => { const updated = invoices.filter(i => i.id !== id); setInvoices(updated); saveInvoices(updated); }} onUpdateStatus={(id, status) => { const updated = invoices.map(i => i.id === id ? { ...i, status } : i); setInvoices(updated); saveInvoices(updated); }} onViewInvoice={(inv) => setActivePreview({ type: 'invoice', doc: inv })} />}
               {activeTab === 'estimates' && <EstimateManager estimates={estimates} settings={settings} onAddEstimate={() => setActiveForm({ type: 'estimate', mode: 'add' })} onEditEstimate={(est) => setActiveForm({ type: 'estimate', mode: 'edit', data: est })} onDeleteEstimate={(id) => { const updated = estimates.filter(e => e.id !== id); setEstimates(updated); saveEstimates(updated); }} onUpdateStatus={(id, status) => { const updated = estimates.map(e => e.id === id ? { ...e, status } : e); setEstimates(updated); saveEstimates(updated); }} onConvertToInvoice={handleConvertEstimateToInvoice} onViewEstimate={(est) => setActivePreview({ type: 'estimate', doc: est })} />}
-              {activeTab === 'customers' && <CustomersManager customers={customers} onSaveCustomers={(updatedList) => { setCustomers(updatedList); saveCustomers(updatedList); }} />}
+              {activeTab === 'customers' && (
+                <CustomersManager 
+                  customers={customers} 
+                  invoices={invoices}
+                  settings={settings}
+                  onSaveCustomers={(updatedList) => { 
+                    setCustomers(updatedList); 
+                    saveCustomers(updatedList); 
+                  }} 
+                  onViewInvoice={(inv) => setActivePreview({ type: 'invoice', doc: inv })}
+                />
+              )}
               {activeTab === 'settings' && <SettingsManager settings={settings} onSaveSettings={(newSettings) => { setSettings(newSettings); saveSettings(newSettings); }} onResetData={handleFactoryResetData} />}
             </>
           )}

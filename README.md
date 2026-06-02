@@ -74,8 +74,9 @@ The architecture was systematically modularized to enforce strict separation of 
 ## 🚀 Key Architectural Modules
 
 ### 1. Unified Dashboard & Performance KPIs
+* **Dynamic Timeframe Filters**: Filter entire company metrics, charts, and transaction lists in real-time by current Week (Mon-Sun), current Month, Trimester (Quarterly), Semester (6 months), current Financial Year, Custom range (with dual date selectors), or view All data.
 * **Real-time Pipeline Tracking**: Stacks accepted vs. rejected quotes to project revenue conversion streams.
-* **Analytical KPI Badges**: Aggregates Outstanding Receivables, Overdue collection amounts, Accepted conversion pipeline totals, and overall settlement volumes.
+* **Analytical KPI Badges**: Aggregates Outstanding Receivables, Overdue collection amounts, Accepted conversion pipeline totals, and overall settlement volumes based on the active timeframe.
 * **Dynamic SVG Visualisations**: Features custom SVG allocation visualizers tracking revenue distributions across multiple client targets.
 
 ### 2. Invoices Log & Financial Records
@@ -87,8 +88,9 @@ The architecture was systematically modularized to enforce strict separation of 
 * **Custom Quotations**: Quickly draft and structure proposals with clean margin calculations.
 * **Approval States**: Track quote processes through interactive `accepted`, `rejected`, or `pending` status indicators.
 
-### 4. Client Profile Directory & Autofill Integration
-* **Enterprise Directory**: Add, update, and persist corporate customer contact details.
+### 4. Client Profile Directory & Interactive Ledgers
+* **Enterprise CRM Directory**: Add, update, and persist corporate customer contact details.
+* **Interactive Customer Profile Views**: Clicking any customer opens a specialized customer financial dashboard displaying customer-specific KPIs (Total Invoiced, Revenue Collected, Pending Balance, Overdue Receivables) and an interactive table of all invoices issued to them with direct preview launchers.
 * **Dynamic Billing Autofill**: Easily select pre-configured profiles in the Document Form to instantly populate client contacts.
 
 ### 5. Settings & Brand Customizer
@@ -96,7 +98,10 @@ The architecture was systematically modularized to enforce strict separation of 
 * **Brand Logo Uploads**: Select custom base64 logos that populate automatically on estimates and invoices.
 * **Multilanguage Configuration**: Change the default output language for invoices and estimates dynamically (English, Spanish, or Catalan).
 
-### 6. 🌍 Multilanguage Deliverables Support
+### 6. Responsive Fluid Frame
+* **Full Multi-Device Responsiveness**: Tailored layout grids, adaptive dialogs, collapsing menus, and scrollable tables designed to present beautifully and operate perfectly on hand-held mobile devices, tablets, laptops, and ultra-wide monitor screens.
+
+### 7. 🌍 Multilanguage Deliverables Support
 The application provides full support for localized deliverables. Users can switch their default language in the settings, which seamlessly translates all invoice and estimate client-facing content:
 * **English (Default)**: Standard international terminology.
 * **Español (Spanish)**: Localized terminology including fields like *FACTURA*, *PRESUPUESTO*, *Fecha de vencimiento*, and customizable tax labels.

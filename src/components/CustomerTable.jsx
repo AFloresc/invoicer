@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { Business, Email, Phone, LocationOn, StickyNote2, Edit, Delete } from '@mui/icons-material';
 
-export function CustomerTable({ filteredCustomers, onEditClick, onDeleteClick }) {
+export function CustomerTable({ filteredCustomers, onEditClick, onDeleteClick, onCustomerClick }) {
   return (
     <TableContainer component={Paper} elevation={0} sx={{ border: '1px solid', borderColor: 'divider', borderRadius: '12px', overflow: 'hidden' }}>
       <Table>
@@ -38,7 +38,16 @@ export function CustomerTable({ filteredCustomers, onEditClick, onDeleteClick })
             </TableRow>
           ) : (
             filteredCustomers.map((cust) => (
-              <TableRow key={cust.id} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow 
+                key={cust.id} 
+                hover 
+                onClick={() => onCustomerClick?.(cust)}
+                sx={{ 
+                  cursor: 'pointer', 
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  transition: 'background-color 0.15s ease'
+                }}
+              >
                 <TableCell>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                     <Avatar sx={{ width: 34, height: 34, bgcolor: 'primary.main', fontSize: '0.85rem', fontWeight: 700 }}>
@@ -103,12 +112,12 @@ export function CustomerTable({ filteredCustomers, onEditClick, onDeleteClick })
                 <TableCell align="right">
                   <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 0.5 }}>
                     <Tooltip title="Edit Profile">
-                      <IconButton size="small" onClick={() => onEditClick(cust)}>
+                      <IconButton size="small" onClick={(e) => { e.stopPropagation(); onEditClick(cust); }}>
                         <Edit sx={{ fontSize: 18 }} />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Delete Profile">
-                      <IconButton size="small" color="error" onClick={() => onDeleteClick(cust.id)}>
+                      <IconButton size="small" color="error" onClick={(e) => { e.stopPropagation(); onDeleteClick(cust.id); }}>
                         <Delete sx={{ fontSize: 18 }} />
                       </IconButton>
                     </Tooltip>
