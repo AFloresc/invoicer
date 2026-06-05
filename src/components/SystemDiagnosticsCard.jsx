@@ -1,28 +1,41 @@
 import React from 'react';
-import { Card, CardContent, Typography, Button } from '@mui/material';
-import { Restore } from '@mui/icons-material';
+import { Card, CardContent, Typography, Button, Box } from '@mui/material';
+import { Delete, Restore } from '@mui/icons-material';
 
-export function SystemDiagnosticsCard({ onFactoryReset }) {
+export function SystemDiagnosticsCard({ onEraseAllData, onRestoreDemoData }) {
   return (
-    <Card variant="outlined" sx={{ borderRadius: '12px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+    <Card variant="outlined" sx={{ borderRadius: '12px', border: '1px solid rgba(226, 232, 240, 0.8)' }}>
       <CardContent sx={{ p: 3 }}>
-        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: 'error.main', mb: 1, fontFamily: 'var(--font-display)' }}>
-          System Diagnostics Control
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: 'text.primary', mb: 1, fontFamily: 'var(--font-display)' }}>
+          Database & Demo Controls
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5, fontSize: '0.8rem' }}>
-          Reset database matrices in local storage. All custom invoicing logs will be wiped and seed default entries re-applied.
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5, fontSize: '0.8rem', lineHeight: 1.5 }}>
+          Manage your local cache. Wipe current documents/leads to build from scratch, or replenish standard billing and client models instantly.
         </Typography>
 
-        <Button 
-          variant="outlined" 
-          color="error" 
-          startIcon={<Restore />} 
-          fullWidth
-          onClick={onFactoryReset}
-          sx={{ textTransform: 'none', borderRadius: '8px', fontWeight: 600 }}
-        >
-          Reset System Data
-        </Button>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          <Button 
+            variant="outlined" 
+            color="error" 
+            startIcon={<Delete />} 
+            fullWidth
+            onClick={onEraseAllData}
+            sx={{ textTransform: 'none', borderRadius: '8px', fontWeight: 600, py: 1 }}
+          >
+            Erase All Data
+          </Button>
+
+          <Button 
+            variant="contained" 
+            color="primary" 
+            startIcon={<Restore />} 
+            fullWidth
+            onClick={onRestoreDemoData}
+            sx={{ textTransform: 'none', borderRadius: '8px', fontWeight: 600, py: 1, boxShadow: 'none', '&:hover': { boxShadow: 'none' } }}
+          >
+            Restore Demo Data
+          </Button>
+        </Box>
       </CardContent>
     </Card>
   );

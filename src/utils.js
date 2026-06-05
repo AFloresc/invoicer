@@ -53,14 +53,27 @@ const STORAGE_KEYS = {
   ESTIMATES: 'inv_mgmt_estimates',
   INVOICES: 'inv_mgmt_invoices',
   CUSTOMERS: 'inv_mgmt_customers',
+  INITIALIZED: 'inv_mgmt_initialized',
 };
 
 // Storage APIs
+function ensureInitialized() {
+  const initialized = localStorage.getItem(STORAGE_KEYS.INITIALIZED);
+  if (initialized !== 'true') {
+    localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(defaultCompanySettings));
+    localStorage.setItem(STORAGE_KEYS.ESTIMATES, JSON.stringify(sampleEstimates));
+    const updated = checkAndUpdateOverdueStatus(sampleInvoices);
+    localStorage.setItem(STORAGE_KEYS.INVOICES, JSON.stringify(updated));
+    localStorage.setItem(STORAGE_KEYS.CUSTOMERS, JSON.stringify(sampleCustomers));
+    localStorage.setItem(STORAGE_KEYS.INITIALIZED, 'true');
+  }
+}
+
 export function loadSettings() {
+  ensureInitialized();
   const stored = localStorage.getItem(STORAGE_KEYS.SETTINGS);
   if (!stored) {
-    localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(defaultCompanySettings));
-    return defaultCompanySettings;
+    return { name: '', email: '', address: '', phone: '', logoUrl: '', currency: '$' };
   }
   return JSON.parse(stored);
 }
@@ -70,11 +83,9 @@ export function saveSettings(settings) {
 }
 
 export function loadEstimates() {
+  ensureInitialized();
   const stored = localStorage.getItem(STORAGE_KEYS.ESTIMATES);
-  if (!stored) {
-    localStorage.setItem(STORAGE_KEYS.ESTIMATES, JSON.stringify(sampleEstimates));
-    return sampleEstimates;
-  }
+  if (!stored) return [];
   return JSON.parse(stored);
 }
 
@@ -83,12 +94,9 @@ export function saveEstimates(estimates) {
 }
 
 export function loadInvoices() {
+  ensureInitialized();
   const stored = localStorage.getItem(STORAGE_KEYS.INVOICES);
-  if (!stored) {
-    const updated = checkAndUpdateOverdueStatus(sampleInvoices);
-    localStorage.setItem(STORAGE_KEYS.INVOICES, JSON.stringify(updated));
-    return updated;
-  }
+  if (!stored) return [];
   const parsed = JSON.parse(stored);
   return checkAndUpdateOverdueStatus(parsed);
 }
@@ -99,11 +107,9 @@ export function saveInvoices(invoices) {
 
 // Customers Storage APIs
 export function loadCustomers() {
+  ensureInitialized();
   const stored = localStorage.getItem(STORAGE_KEYS.CUSTOMERS);
-  if (!stored) {
-    localStorage.setItem(STORAGE_KEYS.CUSTOMERS, JSON.stringify(sampleCustomers));
-    return sampleCustomers;
-  }
+  if (!stored) return [];
   return JSON.parse(stored);
 }
 

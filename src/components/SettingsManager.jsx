@@ -5,7 +5,7 @@ import { LogoSelector } from './LogoSelector.jsx';
 import { SystemDiagnosticsCard } from './SystemDiagnosticsCard.jsx';
 import { CorporateContactProfile } from './CorporateContactProfile.jsx';
 
-export function SettingsManager({ settings, onSaveSettings, onResetData }) {
+export function SettingsManager({ settings, onSaveSettings, onEraseAllData, onRestoreDemoData }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
@@ -16,6 +16,8 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
   const [language, setLanguage] = useState('en');
   const [logoUrl, setLogoUrl] = useState('');
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [erasedSuccess, setErasedSuccess] = useState(false);
+  const [restoredSuccess, setRestoredSuccess] = useState(false);
 
   useEffect(() => {
     setName(settings.name || '');
@@ -56,6 +58,18 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
     setTimeout(() => setSavedSuccess(false), 3000);
   };
 
+  const triggerErase = () => {
+    onEraseAllData();
+    setErasedSuccess(true);
+    setTimeout(() => setErasedSuccess(false), 4000);
+  };
+
+  const triggerRestore = () => {
+    onRestoreDemoData();
+    setRestoredSuccess(true);
+    setTimeout(() => setRestoredSuccess(false), 4000);
+  };
+
   return (
     <Box sx={{ animation: 'fadeIn 0.4s ease' }}>
       <Box sx={{ mb: 4 }}>
@@ -70,6 +84,18 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
       {savedSuccess && (
         <Alert severity="success" icon={<CheckCircle />} sx={{ mb: 3, borderRadius: '10px' }}>
           Company settings saved and applied successfully.
+        </Alert>
+      )}
+
+      {erasedSuccess && (
+        <Alert severity="error" sx={{ mb: 3, borderRadius: '10px', fontWeight: 600 }}>
+          All memory states and local storage databases (Invoices, Estimates, Customers, Settings) have been successfully erased.
+        </Alert>
+      )}
+
+      {restoredSuccess && (
+        <Alert severity="info" sx={{ mb: 3, borderRadius: '10px', fontWeight: 600 }}>
+          Demo data template (Invoices, Estimates, Customers, Settings) has been successfully reloaded and restored.
         </Alert>
       )}
 
@@ -99,12 +125,16 @@ export function SettingsManager({ settings, onSaveSettings, onResetData }) {
             </Grid>
             <Grid size={12}>
               <SystemDiagnosticsCard 
-                onFactoryReset={() => {
-                  if (window.confirm('Are you absolutely sure you want to restore the database? This will revert all bills, proposals, and customers to initial templates and clear custom entries!')) {
-                    onResetData();
-                    setSavedSuccess(false);
+                onEraseAllData={() => {
+                  if (window.confirm('Are you sure you want to erase all invoices, estimates, and customer profiles? This actions will wipe all entries to start with a blank database.')) {
+                    triggerErase();
                   }
-                }} 
+                }}
+                onRestoreDemoData={() => {
+                  if (window.confirm('Are you sure you want to restore the default demo template data? This will reload high-quality sample invoices, estimates, and customer records.')) {
+                    triggerRestore();
+                  }
+                }}
               />
             </Grid>
           </Grid>

@@ -101,12 +101,37 @@ export default function App() {
     setActivePreview({ type: 'invoice', doc: convertedInvoice });
   };
 
-  const handleFactoryResetData = () => {
+  const handleEraseAllData = () => {
+    localStorage.setItem('inv_mgmt_initialized', 'true');
+    const blankSettings = { name: '', email: '', address: '', phone: '', logoUrl: '', currency: '$' };
+    
+    saveEstimates([]);
+    saveInvoices([]);
+    saveCustomers([]);
+    saveSettings(blankSettings);
+    
+    setInvoices([]);
+    setEstimates([]);
+    setCustomers([]);
+    setSettings(blankSettings);
+  };
+
+  const handleRestoreDemoData = () => {
+    localStorage.removeItem('inv_mgmt_initialized');
     localStorage.removeItem('inv_mgmt_settings');
     localStorage.removeItem('inv_mgmt_estimates');
     localStorage.removeItem('inv_mgmt_invoices');
     localStorage.removeItem('inv_mgmt_customers');
-    window.location.reload();
+    
+    const defaultSet = loadSettings();
+    const defaultEst = loadEstimates();
+    const defaultInv = loadInvoices();
+    const defaultCust = loadCustomers();
+    
+    setSettings(defaultSet);
+    setEstimates(defaultEst);
+    setInvoices(defaultInv);
+    setCustomers(defaultCust);
   };
 
   return (
@@ -171,7 +196,14 @@ export default function App() {
                   onViewInvoice={(inv) => setActivePreview({ type: 'invoice', doc: inv })}
                 />
               )}
-              {activeTab === 'settings' && <SettingsManager settings={settings} onSaveSettings={(newSettings) => { setSettings(newSettings); saveSettings(newSettings); }} onResetData={handleFactoryResetData} />}
+              {activeTab === 'settings' && (
+                <SettingsManager 
+                  settings={settings} 
+                  onSaveSettings={(newSettings) => { setSettings(newSettings); saveSettings(newSettings); }} 
+                  onEraseAllData={handleEraseAllData} 
+                  onRestoreDemoData={handleRestoreDemoData} 
+                />
+              )}
             </>
           )}
         </Box>
