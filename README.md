@@ -135,4 +135,4 @@ All states are managed via local key definitions:
 ---
 
 ## 🚀 Deployment site
-🌐 [Live site](hhttps://invoices-manager-v1.netlify.app/)
+🌐 [Live site](https://invoices-manager-v1.netlify.app/)
